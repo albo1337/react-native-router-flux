@@ -50,32 +50,22 @@ export default class Example extends React.Component {
         return <Router createReducer={reducerCreate}>
             <Scene key="modal" component={Modal} >
                 <Scene key="root" hideNavBar={true}>
-                    <Scene key="echo" clone component={EchoView} />
-                    <Scene key="register" component={Register} title="Register"/>
-                    <Scene key="register2" component={Register} title="Register2" duration={1}/>
-                    <Scene key="home" component={Home} title="Replace" type="replace"/>
-                    <Scene key="launch" component={Launch} title="Launch" initial={true} />
-                    <Scene key="login" direction="vertical"  >
-                        <Scene key="loginModal" component={Login} title="Login"/>
-                        <Scene key="loginModal2" hideNavBar={true} component={Login2} title="Login2" panHandlers={null} duration={1}/>
+                
+                    <Scene key="tabbarOne" Component={TabBar} tabs={true} default="loginTab">
+                        <Scene key="loginTab" title="Login" icon={TabIcon}>
+                            <Scene key="login" component={Login} title="Login"/>
+                        </Scene>
+                        <Scene key="registerTab" title="Registration" icon={TabIcon}>
+                            <Scene key="register" component={Register} title="Registration"/>
+                        </Scene>
                     </Scene>
-                    <Scene key="tabbar" component={NavigationDrawer}>
-                        <Scene key="main" tabs={true} default="tab2" >
-                            <Scene key="tab1"  title="Tab #1" icon={TabIcon} navigationBarStyle={{backgroundColor:"red"}} titleStyle={{color:"white"}}>
-                                <Scene key="tab1_1" component={TabView} title="Tab #1_1" onRight={()=>alert("Right button")} rightTitle="Right" />
-                                <Scene key="tab1_2" component={TabView} title="Tab #1_2" titleStyle={{color:"black"}}/>
-                            </Scene>
-                            <Scene key="tab2" initial={true} title="Tab #2" icon={TabIcon}>
-                                <Scene key="tab2_1" component={TabView} title="Tab #2_1"/>
-                                <Scene key="tab2_2" component={TabView} title="Tab #2_2" onLeft={()=>alert("Left button!")} leftTitle="Left" duration={1} panHandlers={null}/>
-                            </Scene>
-                            <Scene key="tab3" component={TabView} title="Tab #3" hideTabBar={true} icon={TabIcon}/>
-                            <Scene key="tab4" component={TabView} title="Tab #4" hideNavBar={true} icon={TabIcon}/>
-                            <Scene key="tab5" component={TabView} title="Tab #5" icon={TabIcon} renderRightButton={()=><Right/>}/>
+
+                    <Scene key="tabbarTwo" Component={TabBar} tabs={true} default="homeTab">
+                        <Scene key="homeTab" title="Home" icon={TabIcon}>
+                            <Scene key="home" component={Home} title="Home"/>
                         </Scene>
                     </Scene>
                 </Scene>
-                <Scene key="error" component={Error}/>
             </Scene>
         </Router>;
     }
